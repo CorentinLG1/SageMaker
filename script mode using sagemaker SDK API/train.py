@@ -59,6 +59,7 @@ if __name__ == "__main__":
     y_pred = estimator.predict(X_test)
     accuracy = accuracy_score(y_test,y_pred)
     print("accuracy on test is : {}".format(accuracy))
+    logger.info("Accuracy: {}".format(accuracy))
     # Save model
     joblib.dump(estimator, os.path.join(args.sm_model_dir, "model.joblib"))
     
