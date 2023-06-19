@@ -34,6 +34,12 @@ if __name__ == "__main__":
     sm_model_dir = args.sm_model_dir
     training_dir = args.train
     testing_dir = args.test
+
+    #define the log level and format
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    # Define a logger
+    logger = logging.getLogger(__name__)
+
     # Read in data
     df_train = pd.read_csv(training_dir + "/dataset_train.csv", sep=",", index_col = "UDI")
     df_test = pd.read_csv(testing_dir + "/dataset_test.csv", sep= ",", index_col = "UDI")
@@ -51,7 +57,8 @@ if __name__ == "__main__":
     estimator = SVC(C = args.C, kernel = args.kernel)
     estimator.fit(X_train, y_train)
     y_pred = estimator.predict(X_test)
-    print("accuracy on test is : {}".format(accuracy_score(y_test,y_pred)))
+    accuracy = accuracy_score(y_test,y_pred)
+    print("accuracy on test is : {}".format(accuracy))
     # Save model
     joblib.dump(estimator, os.path.join(args.sm_model_dir, "model.joblib"))
     
