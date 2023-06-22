@@ -70,7 +70,7 @@ if __name__ == "__main__" :
 
     #example of prediction
     index = np.where(y_test==1)
-    i = 7
+    i = 8
     print("input : ", X_test.iloc[index[0][i]].tolist(), "target :", y_test.iloc[index[0][i]])
     print("prediction : ", model.predict([X_test.iloc[index[0][i]]]))
 
