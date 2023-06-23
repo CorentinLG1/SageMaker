@@ -5,10 +5,7 @@ mkdir docker
 cd docker
 
 touch dockerfile
-echo "FROM python:3.7-slim-buster" > dockerfile
-echo "RUN pip3 install pandas scikit-learn" > dockerfile
-echo "ENV PYTHONUNBUFFERED=TRUE" > dockerfile
-echo "COPY processing.py ." > dockerfile
+printf "FROM python:3.7-slim-buster \nRUN pip3 install pandas scikit-learn \nENV PYTHONUNBUFFERED=TRUE \nCOPY processing.py\n" > dockerfile
 
 
 docker build -t $ecr_repository docker
